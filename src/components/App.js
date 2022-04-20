@@ -1,6 +1,13 @@
+import { useState } from 'react';
 import '../styles/App.scss';
 
 function App() {
+  const [numberOfErrors, setOfError] = useState(0);
+
+  const handlerError = (event) => {
+    event.preventDefault();
+    setOfError(numberOfErrors + 1);
+  };
   return (
     <div className="page">
       <header>
@@ -34,7 +41,9 @@ function App() {
             </ul>
           </div>
           <form className="form">
-            <label className="title" for="last-letter">Escribe una letra:</label>
+            <label className="title" for="last-letter">
+              Escribe una letra:
+            </label>
             <input
               autocomplete="off"
               className="form__input"
@@ -43,9 +52,10 @@ function App() {
               name="last-letter"
               id="last-letter"
             />
+            <button onClick={handlerError}>Incrementar</button>
           </form>
         </section>
-        <section className="dummy error-5">
+        <section className={`dummy error-${numberOfErrors}`}>
           <span className="error-13 eye"></span>
           <span className="error-12 eye"></span>
           <span className="error-11 line"></span>
