@@ -3,11 +3,28 @@ import '../styles/App.scss';
 
 function App() {
   const [numberOfErrors, setOfError] = useState(0);
+  const [lastLetter, setlastLetter] = useState('');
 
   const handlerError = (event) => {
     event.preventDefault();
     setOfError(numberOfErrors + 1);
   };
+
+  const hadleInputLetter = (event) => {
+    event.preventDefault();
+    const newLetter = event.target.value;
+    // Creamos una constante con la expresion regular que queremos utilizar
+    const regular = /[a-zA-Z]/;
+    // Comprobamos que la letra que obtenemos es válida según nuestra expresión regular (guardada en la constante 'regular')
+    if(newLetter === '' || regular.test(newLetter)) { // Si es válida...
+       // ... guardamos el valor 'lastaLetter'
+       setlastLetter(newLetter);
+
+       console.log(newLetter);
+    } // Sino no hagas nada
+    
+  };
+
   return (
     <div className="page">
       <header>
@@ -41,16 +58,19 @@ function App() {
             </ul>
           </div>
           <form className="form">
-            <label className="title" for="last-letter">
+            <label className="title" htmlFor="last-letter">
               Escribe una letra:
             </label>
             <input
-              autocomplete="off"
+              autoComplete="off"
               className="form__input"
-              maxlength="1"
+              maxLength="1"
               type="text"
               name="last-letter"
               id="last-letter"
+              /* value = {lastLetter.replace(/[.,;:_*+\-=¿?¡!^'`${}()<>|\/[\]\\]/g,'')} */
+              value = {lastLetter}
+              onChange = {hadleInputLetter}
             />
             <button onClick={handlerError}>Incrementar</button>
           </form>
