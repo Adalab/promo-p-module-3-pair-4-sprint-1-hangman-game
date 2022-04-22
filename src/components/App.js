@@ -4,6 +4,21 @@ import '../styles/App.scss';
 function App() {
   const [numberOfErrors, setOfError] = useState(0);
   const [lastLetter, setlastLetter] = useState('');
+  const [word, setWord] = useState('katakroker');
+  const [userLetters, setUserLetters] = useState([]);
+
+  const renderSolutionLetters = () => {
+    const wordLetters = word.split('');
+
+    /* return wordLetters.map((letter, index) => {
+      // if(word.includes === letter){
+      //   <li className="letter" key={index}>{letter}</li>
+      // } else {
+      //   <li className="letter" key={index}></li>
+      // }
+      return <li className="letter" key={index}>{word.include(letter) ? {letter} : ''}</li>;
+    }); */ // De momento da error
+  };
 
   const handlerError = (event) => {
     event.preventDefault();
@@ -19,10 +34,10 @@ function App() {
     if(newLetter === '' || regular.test(newLetter)) { // Si es válida...
        // ... guardamos el valor 'lastaLetter'
        setlastLetter(newLetter);
-
-       console.log(newLetter);
     } // Sino no hagas nada
-    
+
+    setUserLetters([...userLetters, newLetter]);
+    /* setlastLetter(''); */ // Esto nos borra lo que escribe la usuaria sin pintar nada en el input
   };
 
   return (
@@ -35,7 +50,8 @@ function App() {
           <div className="solution">
             <h2 className="title">Solución:</h2>
             <ul className="letters">
-              <li className="letter">k</li>
+            {renderSolutionLetters()}
+              {/* <li className="letter">k</li>
               <li className="letter">a</li>
               <li className="letter"></li>
               <li className="letter">a</li>
@@ -44,7 +60,7 @@ function App() {
               <li className="letter"></li>
               <li className="letter">k</li>
               <li className="letter">e</li>
-              <li className="letter">r</li>
+              <li className="letter">r</li> */}
             </ul>
           </div>
           <div className="error">
