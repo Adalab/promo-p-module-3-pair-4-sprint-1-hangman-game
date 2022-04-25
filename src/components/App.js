@@ -10,14 +10,16 @@ function App() {
   const renderSolutionLetters = () => {
     const wordLetters = word.split('');
 
-    /* return wordLetters.map((letter, index) => {
-      // if(word.includes === letter){
-      //   <li className="letter" key={index}>{letter}</li>
-      // } else {
-      //   <li className="letter" key={index}></li>
-      // }
-      return <li className="letter" key={index}>{word.include(letter) ? {letter} : ''}</li>;
-    }); */ // De momento da error
+    /* const validacion = (item) => {
+      if(item === lastLetter) {
+        return item;
+      } else {
+        return '';
+      }
+    } */
+
+    /* return wordLetters.map((letter, index) => <li className="letter" key={index}>{validacion(letter)}</li>) */
+    return wordLetters.map((letter, index) => <li className="letter" key={index}>{letter === lastLetter ? letter : ''}</li>)
   };
 
   const handlerError = (event) => {
